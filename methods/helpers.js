@@ -30,8 +30,8 @@ task-cli list in-progress
 
 function createJSON () {
     try {
-        fs.writeFileSync( generatePath(), '[]')
-        console.log('task.json created successfully')
+        fs.writeFileSync( generatePath(), JSON.stringify([]))
+        console.log('tasks.json created successfully')
     } catch (error) {
         console.log('an error ocurred:', error)
     }

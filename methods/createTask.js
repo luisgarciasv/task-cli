@@ -9,7 +9,7 @@ function createTask([str]) {
   
     readDB()
         .then( tasks => {
-            const last = tasks.slice(-1)[0].id
+            const last = tasks.length ? tasks.slice(-1)[0].id : 0
             //console.log(tasks)
             //console.log(last);
     

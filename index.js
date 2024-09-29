@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const fs = require('node:fs')
 const { usage, createJSON } = require('./methods/helpers')
 const { createTask } = require('./methods/createTask')
