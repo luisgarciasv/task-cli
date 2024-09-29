@@ -10,8 +10,6 @@ const { listTasks } = require('./methods/listTasks')
 
 const [method, ...options] = process.argv.slice(2)
 
-//console.log(method, options)
-
 try {
     if (!fs.existsSync('./tasks.json')){
         createJSON()
@@ -19,18 +17,6 @@ try {
 } catch (error) {
     console.log(error)
 }
-
-// if (!method) {
-//     //console.warn('Expeccted at least 1 argument')
-//     console.log(usage())}
-// } else if (method === 'add'){
-//     //console.log('starting createTask')
-//     createTask(options)
-// } else if (method === 'update') {
-//     updateTask(options)
-// } else if (method === 'delete') {
-//     deleteTask(options)
-// } else if (method === 'mark') {
 
 switch (method) {
     case 'add':

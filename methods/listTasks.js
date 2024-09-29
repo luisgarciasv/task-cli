@@ -5,8 +5,6 @@ const statuses = ['todo', 'in-progress', 'done']
 
 function listTasks([status]) {
 
-    //console.log(status)
-
     if (!status) {
         filterDeleted()
             .then(tasks => {
@@ -24,28 +22,22 @@ function listTasks([status]) {
     switch (status) {
         case statuses[0]:
             filterList(statuses[0])
-                .then(tasks => {
-                    tasks.forEach(({ id, description, status }) => {
-                        console.log(`ID:${id} - Task: ${description} - Status: ${status}`)
-                    })
+                .then(logs => {
+                    logs.forEach(log => console.log(log))
                 })
                 .catch(err => console.log('listTasks: promisen chain', err))
             break;
         case statuses[1]:
             filterList(statuses[1])
-                .then(tasks => {
-                    tasks.forEach(({ id, description, status }) => {
-                        console.log(`ID:${id} - Task: ${description} - Status: ${status}`)
-                    })
+                .then(logs => {
+                    logs.forEach(log => console.log(log))
                 })
                 .catch(err => console.log('listTasks: promisen chain', err))
             break
         case statuses[2]:
             filterList(statuses[2])
-                .then(tasks => {
-                    tasks.forEach(({ id, description, status }) => {
-                        console.log(`ID:${id} - Task: ${description} - Status: ${status}`)
-                    })
+                .then(logs => {
+                    logs.forEach(log => console.log(log))
                 })
                 .catch(err => console.log('listTasks: promisen chain', err))
             break
@@ -54,53 +46,6 @@ function listTasks([status]) {
             break;
 
     }
-
-    // switch (status) {
-    //     case 'todo':
-    //         filterDeleted()
-    //             .then(tasks => {
-    //                 tasks.forEach(task => {
-    //                     if (task.status == 'todo') { return }
-    //                     console.log(`ID:${task.id} - Task:${task.description} - Status:${task.status}`)
-    //                 })
-    //             })
-    //         break
-    //     case 'in-progress':
-    //         filterDeleted()
-    //             .then(tasks => {
-    //                 tasks.forEach(task => {
-    //                     if (task.status == 'todo') return
-    //                     console.log(`ID:${task.id} - Task:${task.description} - Status:${task.status}`)
-    //                 })
-    //             })
-    //         break
-    //     case 'todo':
-    //         filterDeleted()
-    //             .then(tasks => {
-    //                 tasks.forEach(task => {
-    //                     if (task.status == 'todo') return
-    //                     console.log(`ID:${task.id} - Task:${task.description} - Status:${task.status}`)
-    //                 })
-    //             })
-    //         break
-    //     case 'undefined':
-    //         filterDeleted()
-    //             .then(tasks => {
-    //                 tasks.forEach(task => {
-    //                     console.log(`ID:${task.id} - Task:${task.description} - Status:${task.status}`)
-    //                 });
-    //             })
-    //         break
-    //     default:
-    //         console.error(`Tasks status "${status}" not defined on options`)
-    //         break
-    // }
-
-    // if (!status) {
-
-    // } else {
-    //    console.log(`retrieving ${status}'s tasks list(WIP)`)
-    //  }
 
 }
 

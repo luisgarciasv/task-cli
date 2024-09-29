@@ -1,8 +1,8 @@
-const {name: packageName} = require('../package.json')
+const { name: packageName } = require('../package.json')
 const fs = require('node:fs')
 const path = require('node:path')
 
-function usage () {
+function usage() {
     return `
 Hello and welcome to ${packageName}. Some usage examples
 
@@ -28,47 +28,51 @@ task-cli list in-progress
 `
 }
 
-function createJSON () {
+function createJSON() {
     try {
-        fs.writeFileSync( generatePath(), JSON.stringify([]))
+        fs.writeFileSync(generatePath(), JSON.stringify([]))
         console.log('tasks.json created successfully')
     } catch (error) {
         console.log('an error ocurred:', error)
     }
 }
 
-function generatePath () {
+function generatePath() {
     return path.join(__dirname, "../tasks.json")
 }
 
-function isNumber (number) {
+function isNumber(number) {
     return !isNaN(number) && isFinite(number)
 }
- 
+
 function readDB() {
     return fs.promises.readFile(generatePath())
         .then(data => JSON.parse(data))
 }
 
-function filterDeleted () {
+function filterDeleted() {
     return readDB()
-    .then( data => data.filter( ({isDeleted}) => !isDeleted) )
+        .then(data => data.filter(({ isDeleted }) => !isDeleted))
 }
 
-function filterList (option) {
+function filterList(option) {
     return filterDeleted()
-            .then( tasks => {
-                return tasks.filter( ({status})=>  status == option)
-            })
-} 
+        .then(tasks => {
+            return tasks.filter(({ status }) => status == option)
+        })
+        .then(tasks => {
+            if (tasks.length == 0) { return [`No tasks with status: ${option} were found`] }
+            return tasks.map(({ id, description, status }) => `ID:${id} - Task: ${description} - Status: ${status}`)
+        })
+}
 
-module.exports = 
-    { 
-        usage, 
-        createJSON, 
-        generatePath, 
+module.exports =
+    {
+        usage,
+        createJSON,
+        generatePath,
         isNumber,
-        readDB, 
+        readDB,
         filterDeleted,
         filterList
     }

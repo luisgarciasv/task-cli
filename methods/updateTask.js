@@ -15,15 +15,12 @@ function updateTask([id, str]) {
         .then(tasks => {
 
             let previousName
-            //console.log(tasks)
-            //console.log(last);
 
             const updatedTasks = tasks.map((task) => {
                 if (task.id == id) {
                     previousName = task.description
                     task.description = str
                     task.updatedAt = new Date().toString()
-                    //console.log(task)
                     return task
                 }
                 return task
@@ -44,36 +41,6 @@ function updateTask([id, str]) {
         })
         .catch(err => console.log('updateTask: promise chain', err))
 
-    // fs.readFile(generatePath(), (err, data) => {
-    //     if (err) {throw new Error(err)}        
-
-    //     const tasks = JSON.parse(data)
-
-    //     let lastName;
-
-    //     const updatedTasks = tasks.map( (task) => {
-    //         if (task.id == id) {
-    //             lastName = task.description
-    //             task.description = str
-    //             task.updatedAt = new Date().toString()
-    //             //console.log(task)
-    //             return task
-    //         }
-    //         return task
-    //     })
-
-    //     if (!lastName){
-    //         console.error('Task id not found to be updated \nTry task-cli update <#id> <update value>')
-    //         return
-    //     }
-
-    //     try {
-    //         fs.writeFileSync(generatePath(), JSON.stringify(updatedTasks))
-    //         console.log(`Task "${lastName}" updated successfully to "${str}" (ID: ${id})`)
-    //     } catch (error) {
-    //         console.log('updateTask: writefile', error)
-    //     }
-    // })
 }
 
 module.exports = { updateTask }

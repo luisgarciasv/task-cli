@@ -35,38 +35,6 @@ function deleteTask([id]) {
             }
         })
         .catch(err => console.log('deleteTask: promise chain', err))
-
-
-    // fs.readFile(generatePath(), (err, data) => {
-    //     if (err) {throw new Error(err)}        
-
-    //     const tasks = JSON.parse(data)
-
-    //     let lastName;
-
-    //     const updatedTasks = tasks.map( (task) => {
-    //         if (task.id == id) {
-    //             lastName = task.description
-    //             task.updatedAt = new Date().toString()
-    //             task.isDeleted = true
-    //             //console.log(task)
-    //             return task
-    //         }
-    //         return task
-    //     })
-
-    //     if (!lastName){
-    //         console.error('Task id not found to be deleted \nTry task-cli delete <#id>')
-    //         return
-    //     }
-
-    //     try {
-    //         fs.writeFileSync(generatePath(), JSON.stringify(updatedTasks))
-    //         console.log(`Task "${lastName}" deleted successfully (ID: ${id})`)
-    //     } catch (error) {
-    //         console.log('deleteTask: writefile', error)
-    //     }
-    // })
 }
 
 module.exports = { deleteTask }

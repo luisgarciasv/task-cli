@@ -26,7 +26,6 @@ function markTask([id, status]) {
                     if (task.status == status) { noChange = true }
                     task.status = status
                     task.updatedAt = new Date().toString()
-                    //console.log(task)
                     return task
                 }
                 return task
@@ -50,42 +49,6 @@ function markTask([id, status]) {
         })
         .catch( err => console.log('markTask: promise chain' ,err))
 
-    // fs.readFile(generatePath(), (err, data) => {
-    //     if (err) { throw new Error(err) }
-
-    //     const tasks = JSON.parse(data)
-
-    //     let lastName, noChange;
-
-    //     const updatedTasks = tasks.map((task) => {
-    //         if (task.id == id) {
-    //             lastName = task.description
-    //             if (task.status == status) { noChange = true }
-    //             task.status = status
-    //             task.updatedAt = new Date().toString()
-    //             //console.log(task)
-    //             return task
-    //         }
-    //         return task
-    //     })
-
-    //     if (!lastName) {
-    //         console.error('Task id not found to be updated \nTry task-cli mark <#id> <updated status>')
-    //         return
-    //     }
-
-    //     if (noChange) {
-    //         console.error(`Task is already marked as ${status} \nTry task-cli mark <#id> <updated status>`)
-    //         return
-    //     }
-
-    //     try {
-    //         fs.writeFileSync(generatePath(), JSON.stringify(updatedTasks))
-    //         console.log(`Task "${lastName}" updated successfully to  status: "${status}" (ID: ${id})`)
-    //     } catch (error) {
-    //         console.log('updateTask: writefile', error)
-    //     }
-    // })
 }
 
 module.exports = { markTask }
