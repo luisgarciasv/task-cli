@@ -1,6 +1,6 @@
 <div align="center">
 
-![task-cli](https://imgur.com/wTKSymh)
+![task-cli](https://i.imgur.com/wTKSymh.png)
 
 # task-cli
 
