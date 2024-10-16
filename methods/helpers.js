@@ -1,9 +1,9 @@
-const { name: packageName } = require('../package.json')
-const fs = require('node:fs')
-const path = require('node:path')
+const { name: packageName } = require("../package.json");
+const fs = require("node:fs");
+const path = require("node:path");
 
 function usage() {
-    return `
+  return `
 Hello and welcome to ${packageName}. Some usage examples
 
 # Adding a new task
@@ -25,54 +25,57 @@ task-cli list
 task-cli list done
 task-cli list todo
 task-cli list in-progress
-`
+`;
 }
 
 function createJSON() {
-    try {
-        fs.writeFileSync(generatePath(), JSON.stringify([]))
-        console.log('tasks.json created successfully')
-    } catch (error) {
-        console.log('an error ocurred:', error)
-    }
+  try {
+    fs.writeFileSync(generatePath(), JSON.stringify([]));
+    console.log("tasks.json created successfully");
+  } catch (error) {
+    console.log("an error ocurred:", error);
+  }
 }
 
 function generatePath() {
-    return path.join(__dirname, "../tasks.json")
+  return path.join(__dirname, "../tasks.json");
 }
 
 function isNumber(number) {
-    return !isNaN(number) && isFinite(number)
+  return !isNaN(number) && isFinite(number);
 }
 
 function readDB() {
-    return fs.promises.readFile(generatePath())
-        .then(data => JSON.parse(data))
+  return fs.promises.readFile(generatePath())
+    .then((data) => JSON.parse(data));
 }
 
 function filterDeleted() {
-    return readDB()
-        .then(data => data.filter(({ isDeleted }) => !isDeleted))
+  return readDB()
+    .then((data) => data.filter(({ isDeleted }) => !isDeleted));
 }
 
 function filterList(option) {
-    return filterDeleted()
-        .then(tasks => {
-            return tasks.filter(({ status }) => status == option)
-        })
-        .then(tasks => {
-            if (tasks.length == 0) { return [`No tasks with status: ${option} were found`] }
-            return tasks.map(({ id, description, status }) => `ID:${id} - Task: ${description} - Status: ${status}`)
-        })
+  return filterDeleted()
+    .then((tasks) => {
+      return tasks.filter(({ status }) => status == option);
+    })
+    .then((tasks) => {
+      if (tasks.length == 0) {
+        return [`No tasks with status: ${option} were found`];
+      }
+      return tasks.map(({ id, description, status }) =>
+        `ID:${id} - Task: ${description} - Status: ${status}`
+      );
+    });
 }
 
-module.exports =
-    {
-        usage,
-        createJSON,
-        generatePath,
-        isNumber,
-        readDB,
-        filterDeleted,
-        filterList
-    }
+module.exports = {
+  usage,
+  createJSON,
+  generatePath,
+  isNumber,
+  readDB,
+  filterDeleted,
+  filterList,
+};
